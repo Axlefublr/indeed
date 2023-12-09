@@ -2,6 +2,12 @@
 name = "indeed"
 version = "0.1.0"
 edition = "2021"
+authors = ["Axlefublr"]
+license = "MIT"
+description = "Reserving name"
+readme = "README.md"
+homepage = "https://github.com/Axlefublr/indeed"
+repository = "https://github.com/Axlefublr/indeed"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
