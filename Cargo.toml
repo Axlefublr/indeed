@@ -1,10 +1,10 @@
 [package]
 name = "indeed"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 authors = ["Axlefublr"]
 license = "MIT"
-description = "Reserving name"
+description = "Add strings to a file on their own lines, if they aren't already there."
 readme = "README.md"
 homepage = "https://github.com/Axlefublr/indeed"
 repository = "https://github.com/Axlefublr/indeed"
