@@ -1,5 +1,6 @@
 use args::Args;
 use clap::Parser;
+use std::fs;
 use std::fs::OpenOptions;
 use std::io::Read;
 use std::io::Seek;
@@ -8,8 +9,15 @@ use std::process::ExitCode;
 
 mod args;
 
+// We can't just use Result<(), Box<dyn Error>> because that wouldn't let us return a non-zero exit code with no error message attached to it
 fn main() -> ExitCode {
     let Args { path, mut strings } = Args::parse();
+    if let Some(parent_dir) = path.clone().parent() {
+        if let Err(error) = fs::create_dir_all(parent_dir) {
+            eprintln!("{}", error);
+            return ExitCode::FAILURE;
+        }
+    }
     let mut file = match OpenOptions::new().read(true).write(true).create(true).open(path) {
         Ok(file) => file,
         Err(error) => {
