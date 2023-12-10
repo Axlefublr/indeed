@@ -48,21 +48,25 @@ This program exists because of how annoying it is to make sure things are `.giti
 
 With `indeed`, you can now do `indeed .gitignore target/` to make sure `target/` is git ignored, without possibly introducing a duplicate line in the `.gitignore` file.
 
+You don't even have to preemtively create said `.gitignore` file, because `indeed` will create the provided path if it doesn't exist.
+
 # Usage
 
 ```
 Add strings to a file on their own lines, if they aren't already there.
 A write to the file is only done if at least one of the specified strings need to be added.
 Final newlines are trimmed in that case.
+The file is created if it doesn't exist.
 If all of the specified strings are already in the file, a non-zero exitcode is returned with no error message.
 
 Usage: indeed <PATH> [STRINGS]...
 
 Arguments:
   <PATH>
+          
 
   [STRINGS]...
-
+          
 
 Options:
   -h, --help
