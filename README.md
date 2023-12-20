@@ -52,32 +52,24 @@ You don't even have to preemtively create said `.gitignore` file, because `indee
 
 Hell, you don't even need to be in the same directory as the `.gitignore` file, because you could just `indeed my-project/.gitignore target/`
 
-# Usage
+## Usage
 
 ```
-Add strings to a file on their own lines, if they aren't already there.
-A write to the file is only done if at least one of the specified strings need to be added.
-Final newlines are trimmed in that case.
-The file (along with its parent directories) is created if it doesn't exist.
-If all of the specified strings are already in the file, a non-zero exitcode is returned with no error message.
+Add strings to a file on their own lines, if they aren't already there. A write to the file is only done if at least one of the specified strings need to be added. Final newlines are trimmed in that case. The file (along with its
+parent directories) is created if it doesn't exist. If all of the specified strings are already in the file, a non-zero exitcode is returned with no error message
 
 Usage: indeed <PATH> [STRINGS]...
 
 Arguments:
   <PATH>
-
   [STRINGS]...
 
-
 Options:
-  -h, --help
-          Print help (see a summary with '-h')
-
-  -V, --version
-          Print version
+  -h, --help     Print help
+  -V, --version  Print version
 ```
 
-# Install
+## Install
 
 ```
 cargo install indeed
@@ -85,7 +77,7 @@ cargo install indeed
 
 `cargo-binstall` and `cargo-quickinstall` are also supported
 
-# Uninstall
+## Uninstall
 
 ```
 cargo uninstall indeed
