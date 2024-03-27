@@ -2,7 +2,9 @@
 
 > Indeed, those strings are in the file
 
-This program lets you abstract away a very simple action: add a string to a file on its own line, if it isn't there already.
+This program lets you abstract away a very simple action: append lines to a file.
+
+A more complex action, that this program is initially made for is expressed with the `--unique`/`-u` flag, that only appends each line if it isn't already in the file.
 
 For example, if file `asdf` contains this text:
 ```
@@ -12,7 +14,7 @@ three
 
 ```
 
-You can execute `indeed asdf two six` to make the file contain:
+You can execute `indeed -u asdf two six` to make the file contain:
 ```
 one
 two
@@ -29,7 +31,7 @@ twofer
 three
 ```
 ```
-indeed asdf two
+indeed -u asdf two
 ```
 ```
 one
@@ -46,25 +48,32 @@ Mind that all final newlines get trimmed (if there's a write to the file), so yo
 
 This program exists because of how annoying it is to make sure things are `.gitignore`d
 
-With `indeed`, you can now do `indeed .gitignore target/` to make sure `target/` is git ignored, without possibly introducing a duplicate line in the `.gitignore` file.
+With `indeed`, you can now do `indeed -u .gitignore target/` to make sure `target/` is git ignored, without possibly introducing a duplicate line in the `.gitignore` file.
 
 You don't even have to preemtively create said `.gitignore` file, because `indeed` will create the provided path if it doesn't exist.
 
-Hell, you don't even need to be in the same directory as the `.gitignore` file, because you could just `indeed my-project/.gitignore target/`
+Hell, you don't even need to be in the same directory as the `.gitignore` file, because you could just `indeed -u my-project/.gitignore target/`
 
 ## Usage
 
 ```
-Add strings to a file on their own lines, if they aren't already there. A write to the file is only done if at least one of the specified strings need to be added. Final newlines are trimmed in that case. The file (along with its
-parent directories) is created if it doesn't exist. If all of the specified strings are already in the file, a non-zero exitcode is returned with no error message
+Appends lines of text to a file on their own lines.
+A write to the file is only done if at least one of the specified strings needs to be added.
+Final newlines are trimmed in that case.
+The file (along with its parent directories) is created if it doesn't exist.
 
-Usage: indeed <PATH> [STRINGS]...
+Usage: indeed [OPTIONS] <PATH> [STRINGS]...
 
 Arguments:
   <PATH>
   [STRINGS]...
 
 Options:
+  -u, --unique   Only append a line if it's not already in the file.
+                 This check happens separately for each line.
+                 The matching is exact, not substring.
+                 If all of the specified strings are already in the file,
+                 a non-zero exitcode is returned with no error message.
   -h, --help     Print help
   -V, --version  Print version
 ```
