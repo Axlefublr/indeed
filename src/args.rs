@@ -4,8 +4,8 @@ use clap::Parser;
 
 /// Appends lines of text to a file on their own lines.
 /// A write to the file is only done if at least one of the specified strings
-/// needs to be added. Final newlines are trimmed in that case. Or the last one is kept, with the
-/// `-n` / `--newline` option.
+/// needs to be added. Final newlines are trimmed in that case. Or the last one is
+/// kept, with the `-n` / `--newline` option.
 /// The file (along with its parent directories) is created if it doesn't exist.
 #[derive(Parser)]
 #[command(author, version)]
@@ -19,7 +19,8 @@ pub struct Args {
     /// exitcode is returned with no error message.
     #[arg(short, long)]
     pub unique:  bool,
-    /// Add a newline at the end of the file, if any writes to the file needed to happen.
+    /// Add a newline at the end of the file, if any writes to the file needed to
+    /// happen.
     #[arg(short, long)]
     pub newline: bool,
 }
