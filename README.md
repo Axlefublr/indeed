@@ -44,7 +44,7 @@ A write to the file is only done if at least one string needs to be added. If al
 
 There's no error message because even if nothing got added, you still ensured certain strings are in the file, essentially meaning a success. The non-zero exit code is useful with chaining shell commands with `&&`.
 
-Mind that all final newlines get trimmed (if there's a write to the file), so you won't have to worry about them as you would have to otherwise.
+Mind that all final newlines get trimmed (if there's a write to the file), so you won't have to worry about them as you would have to otherwise. If you do want a final newline, use the `--newline` / `-n` option.
 
 This program exists because of how annoying it is to make sure things are `.gitignore`d
 
@@ -60,7 +60,8 @@ Hell, you don't even need to be in the same directory as the `.gitignore` file, 
 Appends lines of text to a file on their own lines.
 A write to the file is only done if at least one of the specified strings needs to be added.
 Final newlines are trimmed in that case.
-The file (along with its parent directories) is created if it doesn't exist.
+Or the last one is kept, with the `-n` / `--newline` option.
+The file (along with its parent directories) is created if it doesn't exist
 
 Usage: indeed [OPTIONS] <PATH> [STRINGS]...
 
@@ -72,8 +73,9 @@ Options:
   -u, --unique   Only append a line if it's not already in the file.
                  This check happens separately for each line.
                  The matching is exact, not substring.
-                 If all of the specified strings are already in the file,
-                 a non-zero exitcode is returned with no error message.
+                 If all of the specified strings are already in the
+                 file, a non-zero exitcode is returned with no error message
+  -n, --newline  Add a newline at the end of the file, if any writes to the file needed to happen
   -h, --help     Print help
   -V, --version  Print version
 ```

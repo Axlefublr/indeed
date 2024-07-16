@@ -17,6 +17,7 @@ fn main() -> ExitCode {
         path,
         mut strings,
         unique,
+        newline,
     } = Args::parse();
     if let Some(parent_dir) = path.clone().parent() {
         if let Err(error) = fs::create_dir_all(parent_dir) {
@@ -28,6 +29,7 @@ fn main() -> ExitCode {
         .read(true)
         .write(true)
         .create(true)
+        .truncate(false)
         .open(path)
     {
         Ok(file) => file,
@@ -56,7 +58,12 @@ fn main() -> ExitCode {
             eprintln!("{}", error);
             return ExitCode::FAILURE;
         };
-        if let Err(error) = write!(file, "{}", contents.join("\n")) {
+        if let Err(error) = write!(
+            file,
+            "{}{}",
+            contents.join("\n"),
+            if newline { "\n" } else { "" }
+        ) {
             eprintln!("{}", error);
             return ExitCode::FAILURE;
         }
